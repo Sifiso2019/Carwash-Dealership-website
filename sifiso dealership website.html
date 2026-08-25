@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sifiso Dealership — Drive Your Dream</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#D42B2B;
+  --red-dark:#A01E1E;
+  --red-light:#FF4444;
+  --black:#0A0A0A;
+  --dark:#141414;
+  --card:#1C1C1C;
+  --border:#2A2A2A;
+  --silver:#C0C0C8;
+  --white:#F5F5F5;
+  --muted:#888;
+  --display:'Barlow Condensed',sans-serif;
+  --body:'Barlow',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--black);color:var(--white);overflow-x:hidden}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--dark)}
+::-webkit-scrollbar-thumb{background:var(--red)}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;height:68px;
+  background:rgba(10,10,10,0.95);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);
+}
+.nav-logo{
+  font-family:var(--display);font-size:1.6rem;font-weight:900;
+  color:var(--white);text-decoration:none;letter-spacing:0.02em;
+  display:flex;align-items:center;gap:10px;
+}
+.logo-mark{
+  width:36px;height:36px;background:var(--red);
+  clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:900;color:white;
+}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  color:var(--muted);text-decoration:none;
+  font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{
+  background:var(--red);color:white;
+  padding:9px 22px;border-radius:3px;
+  font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+  text-decoration:none;transition:background 0.2s,transform 0.15s;
+}
+.nav-cta:hover{background:var(--red-light);transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;padding-top:68px;
+  display:grid;grid-template-rows:1fr auto;
+  position:relative;overflow:hidden;
+  background:var(--black);
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 70% 50%, rgba(212,43,43,0.12) 0%, transparent 70%),
+    repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(255,255,255,0.02) 79px, rgba(255,255,255,0.02) 80px);
+}
+.hero-content{
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;padding:80px 5vw 60px;
+  position:relative;z-index:2;gap:4rem;
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--display);font-size:13px;font-weight:700;
+  letter-spacing:0.15em;text-transform:uppercase;color:var(--red);
+  margin-bottom:1.5rem;
+}
+.hero-tag::before{content:'';width:24px;height:2px;background:var(--red)}
+.hero h1{
+  font-family:var(--display);
+  font-size:clamp(3.5rem,6.5vw,6rem);
+  font-weight:900;line-height:0.95;
+  text-transform:uppercase;letter-spacing:-0.01em;
+  color:var(--white);margin-bottom:1.5rem;
+}
+.hero h1 span{color:var(--red);display:block}
+.hero-sub{
+  font-size:16px;line-height:1.7;color:var(--muted);
+  max-width:420px;margin-bottom:2.5rem;
+}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-red{
+  background:var(--red);color:white;
+  padding:14px 32px;border-radius:3px;
+  font-family:var(--display);font-size:16px;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
+  text-decoration:none;display:inline-block;
+  transition:background 0.2s,transform 0.15s;
+  border:2px solid var(--red);
+}
+.btn-red:hover{background:var(--red-light);border-color:var(--red-light);transform:translateY(-2px)}
+.btn-ghost{
+  background:transparent;color:var(--white);
+  padding:14px 32px;border-radius:3px;
+  font-family:var(--display);font-size:16px;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
+  text-decoration:none;display:inline-block;
+  border:2px solid var(--border);
+  transition:border-color 0.2s,color 0.2s;
+}
+.btn-ghost:hover{border-color:var(--silver);color:var(--silver)}
+
+/* Car SVG illustration */
+.hero-car{display:flex;align-items:center;justify-content:center;position:relative}
+.hero-car svg{width:100%;max-width:560px;filter:drop-shadow(0 40px 60px rgba(212,43,43,0.25))}
+.car-glow{
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:80%;height:20px;
+  background:rgba(212,43,43,0.3);
+  border-radius:50%;filter:blur(20px);
+}
+
+/* Stats bar */
+.hero-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--border);
+  position:relative;z-index:2;
+}
+.hero-stat{
+  padding:24px 5vw;
+  border-right:1px solid var(--border);
+}
+.hero-stat:last-child{border-right:none}
+.hero-stat .num{
+  font-family:var(--display);font-size:2.4rem;font-weight:900;
+  color:var(--red);line-height:1;
+}
+.hero-stat .label{font-size:12px;color:var(--muted);margin-top:4px;letter-spacing:0.06em;text-transform:uppercase}
+
+/* ── SECTIONS ── */
+section{padding:100px 5vw}
+.s-label{
+  font-family:var(--display);font-size:12px;font-weight:700;
+  letter-spacing:0.15em;text-transform:uppercase;color:var(--red);
+  margin-bottom:0.75rem;display:flex;align-items:center;gap:10px;
+}
+.s-label::after{content:'';flex:0 0 30px;height:2px;background:var(--red)}
+.s-title{
+  font-family:var(--display);
+  font-size:clamp(2.2rem,4vw,3.2rem);
+  font-weight:900;text-transform:uppercase;
+  color:var(--white);line-height:1.05;margin-bottom:1rem;
+}
+
+/* ── INVENTORY / CARS ── */
+.inventory{background:var(--dark)}
+.inv-header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:3rem}
+
+/* Filter tabs */
+.filter-tabs{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.tab{
+  padding:8px 18px;border-radius:2px;
+  font-family:var(--display);font-size:14px;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
+  border:1px solid var(--border);color:var(--muted);
+  background:transparent;cursor:pointer;transition:all 0.2s;
+}
+.tab.active,.tab:hover{background:var(--red);border-color:var(--red);color:white}
+
+.cars-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:1.5rem;
+}
+.car-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:6px;overflow:hidden;
+  transition:transform 0.25s,border-color 0.25s;
+  cursor:pointer;
+}
+.car-card:hover{transform:translateY(-6px);border-color:var(--red)}
+.car-thumb{
+  width:100%;aspect-ratio:16/9;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.car-thumb svg{width:85%;transition:transform 0.3s}
+.car-card:hover .car-thumb svg{transform:scale(1.04)}
+.car-badge{
+  position:absolute;top:12px;left:12px;
+  font-family:var(--display);font-size:11px;font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;
+  padding:4px 10px;border-radius:2px;
+}
+.badge-new{background:var(--red);color:white}
+.badge-used{background:#333;color:var(--silver)}
+.badge-hot{background:#FF6B00;color:white}
+
+.car-info{padding:20px 22px 24px}
+.car-make{font-size:11px;font-weight:600;color:var(--red);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px}
+.car-name{font-family:var(--display);font-size:1.3rem;font-weight:800;text-transform:uppercase;color:var(--white);margin-bottom:12px}
+.car-specs{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:16px}
+.spec{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px}
+.spec-dot{width:4px;height:4px;background:var(--border);border-radius:50%}
+.car-footer{display:flex;align-items:center;justify-content:space-between}
+.car-price{font-family:var(--display);font-size:1.6rem;font-weight:900;color:var(--white)}
+.car-price small{font-size:0.65em;color:var(--muted);font-weight:400}
+.btn-view{
+  background:transparent;border:1px solid var(--red);
+  color:var(--red);padding:8px 16px;border-radius:2px;
+  font-family:var(--display);font-size:13px;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
+  cursor:pointer;transition:all 0.2s;text-decoration:none;
+}
+.btn-view:hover{background:var(--red);color:white}
+
+/* ── WHY US ── */
+.why{background:var(--black)}
+.why-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;margin-top:3rem;
+}
+.why-points{display:flex;flex-direction:column;gap:2rem}
+.why-point{display:flex;gap:1.5rem;align-items:flex-start}
+.why-icon{
+  width:48px;height:48px;flex-shrink:0;
+  background:rgba(212,43,43,0.12);
+  border:1px solid rgba(212,43,43,0.3);
+  border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;
+}
+.why-point h3{font-family:var(--display);font-size:1.1rem;font-weight:800;text-transform:uppercase;margin-bottom:6px;color:var(--white)}
+.why-point p{font-size:14px;color:var(--muted);line-height:1.65}
+.why-visual{position:relative}
+.why-big-num{
+  font-family:var(--display);font-size:clamp(6rem,12vw,10rem);
+  font-weight:900;text-transform:uppercase;
+  color:transparent;-webkit-text-stroke:1px rgba(212,43,43,0.2);
+  line-height:1;margin-bottom:-1rem;
+  user-select:none;
+}
+.why-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:6px;padding:36px;
+  position:relative;
+}
+.why-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--red);border-radius:6px 6px 0 0;
+}
+.why-card h3{font-family:var(--display);font-size:1.8rem;font-weight:900;text-transform:uppercase;margin-bottom:1.5rem}
+.why-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.why-list li{
+  display:flex;align-items:center;gap:12px;
+  font-size:14px;color:var(--muted);
+}
+.why-list li::before{content:'✓';color:var(--red);font-weight:700;font-size:16px;flex-shrink:0}
+
+/* ── FINANCE BAND ── */
+.finance-band{
+  background:var(--red);padding:80px 5vw;
+  display:grid;grid-template-columns:1fr auto;
+  align-items:center;gap:3rem;
+}
+.finance-band h2{
+  font-family:var(--display);
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:900;text-transform:uppercase;
+  color:white;line-height:1.05;
+}
+.finance-band p{font-size:16px;color:rgba(255,255,255,0.75);margin-top:0.75rem;max-width:520px}
+.btn-white{
+  background:white;color:var(--red);
+  padding:16px 36px;border-radius:3px;
+  font-family:var(--display);font-size:17px;font-weight:800;
+  letter-spacing:0.06em;text-transform:uppercase;
+  text-decoration:none;display:inline-block;white-space:nowrap;
+  transition:transform 0.15s,background 0.2s;
+}
+.btn-white:hover{background:var(--black);color:white;transform:translateY(-2px)}
+
+/* ── TESTIMONIALS ── */
+.testimonials{background:var(--dark)}
+.testi-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:1.5rem;margin-top:3rem;
+}
+.testi-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:6px;padding:28px;
+  transition:border-color 0.2s;
+}
+.testi-card:hover{border-color:rgba(212,43,43,0.4)}
+.stars{color:var(--red);font-size:14px;margin-bottom:1rem;letter-spacing:2px}
+.testi-card p{font-size:14px;line-height:1.7;color:var(--muted);margin-bottom:1.25rem}
+.testi-author{display:flex;align-items:center;gap:12px}
+.avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--red);display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:16px;font-weight:700;color:white;flex-shrink:0;
+}
+.testi-author strong{display:block;font-size:14px;color:var(--white)}
+.testi-author span{font-size:12px;color:var(--muted)}
+
+/* ── CONTACT ── */
+.contact{background:var(--black)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;margin-top:3rem}
+.contact-info{display:flex;flex-direction:column;gap:2rem}
+.contact-item h4{font-family:var(--display);font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:6px}
+.contact-item p{font-size:16px;color:var(--white);line-height:1.5}
+.contact-form{display:flex;flex-direction:column;gap:1rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-field input,.form-field select,.form-field textarea{
+  width:100%;background:var(--card);border:1px solid var(--border);
+  border-radius:3px;padding:12px 16px;
+  font-family:var(--body);font-size:14px;color:var(--white);
+  outline:none;transition:border-color 0.2s;
+}
+.form-field input::placeholder,.form-field textarea::placeholder{color:var(--muted)}
+.form-field select option{background:var(--card)}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--red)}
+.form-field textarea{resize:vertical;min-height:120px}
+.form-field label{display:block;font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+
+/* ── FOOTER ── */
+footer{
+  background:#050505;border-top:1px solid var(--border);
+  padding:60px 5vw 28px;
+}
+.footer-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:3rem;margin-bottom:3rem;
+}
+.footer-brand p{font-size:14px;color:var(--muted);line-height:1.7;margin-top:1rem;max-width:280px}
+.footer-col h4{
+  font-family:var(--display);font-size:12px;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.1em;
+  color:var(--red);margin-bottom:1rem;
+}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:0.6rem}
+.footer-col ul a{color:var(--muted);text-decoration:none;font-size:14px;transition:color 0.2s}
+.footer-col ul a:hover{color:var(--white)}
+.footer-bottom{
+  border-top:1px solid var(--border);padding-top:24px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;color:var(--muted);flex-wrap:wrap;gap:0.5rem;
+}
+.socials{display:flex;gap:12px}
+.social-btn{
+  width:34px;height:34px;border-radius:3px;
+  border:1px solid var(--border);background:var(--card);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:14px;text-decoration:none;
+  transition:border-color 0.2s,color 0.2s;
+}
+.social-btn:hover{border-color:var(--red);color:var(--red)}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.hero-tag{animation:fadeUp 0.6s 0.1s ease both}
+.hero h1{animation:fadeUp 0.7s 0.25s ease both}
+.hero-sub{animation:fadeUp 0.7s 0.4s ease both}
+.hero-btns{animation:fadeUp 0.7s 0.55s ease both}
+.hero-car{animation:fadeIn 1s 0.3s ease both}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .hero-content{grid-template-columns:1fr}
+  .hero-car{display:none}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .why-grid{grid-template-columns:1fr}
+  .why-visual{display:none}
+  .contact-grid{grid-template-columns:1fr}
+  .finance-band{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-mark">S</div>
+    SIFISO <span style="color:var(--red)">DEALERSHIP</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#inventory">Inventory</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#finance">Finance</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#inventory" class="nav-cta">Browse Cars</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-tag">Gauteng Finest Dealership</div>
+      <h1>Drive Your<span>Dream Car</span>Today</h1>
+      <p class="hero-sub">Sifiso Dealership offers the best selection of new and pre-owned vehicles. Trusted by thousands of South Africans — competitive pricing, flexible finance, zero hassle.</p>
+      <div class="hero-btns">
+        <a href="#inventory" class="btn-red">View Inventory</a>
+        <a href="#contact" class="btn-ghost">Book a Test Drive</a>
+      </div>
+    </div>
+    <div class="hero-car">
+      <!-- Stylised car SVG -->
+      <svg viewBox="0 0 560 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Shadow -->
+        <ellipse cx="280" cy="262" rx="200" ry="12" fill="rgba(212,43,43,0.2)"/>
+        <!-- Body lower -->
+        <rect x="60" y="160" width="440" height="80" rx="12" fill="#1a1a1a"/>
+        <!-- Body upper -->
+        <path d="M140 160 C160 100 200 80 280 78 C360 78 400 100 420 160 Z" fill="#222222"/>
+        <!-- Roof detail line -->
+        <path d="M170 158 C185 112 220 96 280 94 C340 94 375 112 390 158" stroke="#333" stroke-width="1.5" fill="none"/>
+        <!-- Windshield -->
+        <path d="M185 158 C200 118 228 105 280 104 C332 104 360 118 375 158" fill="#1D2F44" opacity="0.9"/>
+        <path d="M185 158 C200 118 228 105 280 104 C332 104 360 118 375 158" fill="none" stroke="#2a4060" stroke-width="1"/>
+        <!-- Side windows -->
+        <rect x="150" y="128" width="28" height="32" rx="3" fill="#1D2F44" opacity="0.8"/>
+        <rect x="382" y="128" width="28" height="32" rx="3" fill="#1D2F44" opacity="0.8"/>
+        <!-- Red stripe -->
+        <rect x="60" y="195" width="440" height="5" fill="var(--red)" rx="2"/>
+        <!-- Door lines -->
+        <line x1="220" y1="162" x2="220" y2="238" stroke="#2a2a2a" stroke-width="1.5"/>
+        <line x1="340" y1="162" x2="340" y2="238" stroke="#2a2a2a" stroke-width="1.5"/>
+        <!-- Door handles -->
+        <rect x="228" y="192" width="22" height="5" rx="2" fill="#555"/>
+        <rect x="310" y="192" width="22" height="5" rx="2" fill="#555"/>
+        <!-- Front bumper -->
+        <path d="M60 200 L40 220 L50 240 L80 240" fill="#1a1a1a"/>
+        <rect x="50" y="225" width="30" height="8" rx="2" fill="var(--red)" opacity="0.7"/>
+        <!-- Headlights -->
+        <ellipse cx="75" cy="210" rx="18" ry="10" fill="#FFE066" opacity="0.9"/>
+        <ellipse cx="75" cy="210" rx="10" ry="6" fill="white" opacity="0.6"/>
+        <!-- Rear bumper -->
+        <path d="M500 200 L520 220 L510 240 L480 240" fill="#1a1a1a"/>
+        <rect x="480" y="225" width="30" height="8" rx="2" fill="var(--red)" opacity="0.7"/>
+        <!-- Tail lights -->
+        <rect x="488" y="200" width="22" height="18" rx="3" fill="var(--red)" opacity="0.85"/>
+        <!-- Front wheel -->
+        <circle cx="148" cy="245" r="33" fill="#111"/>
+        <circle cx="148" cy="245" r="24" fill="#1a1a1a"/>
+        <circle cx="148" cy="245" r="16" fill="#222"/>
+        <circle cx="148" cy="245" r="6" fill="#333"/>
+        <!-- Spokes -->
+        <line x1="148" y1="221" x2="148" y2="269" stroke="#444" stroke-width="3"/>
+        <line x1="124" y1="245" x2="172" y2="245" stroke="#444" stroke-width="3"/>
+        <line x1="131" y1="228" x2="165" y2="262" stroke="#444" stroke-width="3"/>
+        <line x1="165" y1="228" x2="131" y2="262" stroke="#444" stroke-width="3"/>
+        <!-- Rear wheel -->
+        <circle cx="412" cy="245" r="33" fill="#111"/>
+        <circle cx="412" cy="245" r="24" fill="#1a1a1a"/>
+        <circle cx="412" cy="245" r="16" fill="#222"/>
+        <circle cx="412" cy="245" r="6" fill="#333"/>
+        <line x1="412" y1="221" x2="412" y2="269" stroke="#444" stroke-width="3"/>
+        <line x1="388" y1="245" x2="436" y2="245" stroke="#444" stroke-width="3"/>
+        <line x1="395" y1="228" x2="429" y2="262" stroke="#444" stroke-width="3"/>
+        <line x1="429" y1="228" x2="395" y2="262" stroke="#444" stroke-width="3"/>
+        <!-- Red rim accent -->
+        <circle cx="148" cy="245" r="24" fill="none" stroke="var(--red)" stroke-width="1.5" opacity="0.6"/>
+        <circle cx="412" cy="245" r="24" fill="none" stroke="var(--red)" stroke-width="1.5" opacity="0.6"/>
+      </svg>
+      <div class="car-glow"></div>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">500+</div><div class="label">Cars in Stock</div></div>
+    <div class="hero-stat"><div class="num">12+</div><div class="label">Years in Business</div></div>
+    <div class="hero-stat"><div class="num">4,800+</div><div class="label">Happy Customers</div></div>
+    <div class="hero-stat"><div class="num">100%</div><div class="label">Finance Approval Rate</div></div>
+  </div>
+</div>
+
+<!-- INVENTORY -->
+<section class="inventory" id="inventory">
+  <div class="inv-header">
+    <div>
+      <div class="s-label">Our Stock</div>
+      <h2 class="s-title">Browse Inventory</h2>
+    </div>
+    <a href="#contact" class="btn-red">Request a Car</a>
+  </div>
+  <div class="filter-tabs">
+    <button class="tab active">All Vehicles</button>
+    <button class="tab">Sedans</button>
+    <button class="tab">SUVs</button>
+    <button class="tab">Hatchbacks</button>
+    <button class="tab">Bakkies</button>
+    <button class="tab">Under R200k</button>
+  </div>
+  <div class="cars-grid">
+
+    <!-- Car 1 -->
+    <div class="car-card">
+      <div class="car-thumb" style="background:#1a1a2e">
+        <svg viewBox="0 0 300 160" fill="none"><ellipse cx="150" cy="148" rx="110" ry="7" fill="rgba(212,43,43,0.2)"/><rect x="40" y="90" width="220" height="48" rx="8" fill="#1C3461"/><path d="M90 90 C105 58 130 48 150 47 C170 47 195 58 210 90Z" fill="#1a2f55"/><ellipse cx="95" cy="136" rx="18" ry="18" fill="#111"/><ellipse cx="95" cy="136" rx="12" ry="12" fill="#1a1a1a"/><ellipse cx="205" cy="136" rx="18" ry="18" fill="#111"/><ellipse cx="205" cy="136" rx="12" ry="12" fill="#1a1a1a"/><rect x="40" y="110" width="220" height="3" fill="#D42B2B"/><rect x="40" y="122" width="25" height="12" rx="3" fill="#FFE066" opacity="0.9"/><rect x="235" y="122" width="25" height="12" rx="3" fill="#D42B2B" opacity="0.9"/></svg>
+        <div class="car-badge badge-new">New</div>
+      </div>
+      <div class="car-info">
+
+        <div class="car-make">Toyota</div>
+        <div class="car-name">Corolla Quest 1.8</div>
+        <div class="car-specs">
+          <span class="spec">2024</span>
+          <span class="spec-dot"></span>
+          <span class="spec">Manual</span>
+          <span class="spec-dot"></span>
+          <span class="spec">Petrol</span>
+          <span class="spec-dot"></span>
+          <span class="spec">50 000 km</span>
+        </div>
+        <div class="car-footer">
+          <div class="car-price"><small>From </small>R 289,900</div>
+          <a href="#contact" class="btn-view">Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Car 2 -->
+    <div class="car-card">
+      <div class="car-thumb" style="background:#1a1a1a">
+        <svg viewBox="0 0 300 160" fill="none"><ellipse cx="150" cy="148" rx="110" ry="7" fill="rgba(212,43,43,0.2)"/><rect x="30" y="85" width="240" height="55" rx="10" fill="#2a2a2a"/><path d="M80 85 C100 48 128 36 150 35 C172 35 200 48 220 85Z" fill="#222"/><ellipse cx="88" cy="138" rx="20" ry="20" fill="#111"/><ellipse cx="88" cy="138" rx="13" ry="13" fill="#1e1e1e"/><ellipse cx="212" cy="138" rx="20" ry="20" fill="#111"/><ellipse cx="212" cy="138" rx="13" ry="13" fill="#1e1e1e"/><rect x="30" y="104" width="240" height="4" fill="#D42B2B"/><rect x="30" y="118" width="30" height="14" rx="3" fill="#FFE066" opacity="0.8"/><rect x="240" y="118" width="30" height="14" rx="3" fill="#D42B2B" opacity="0.8"/></svg>
+        <div class="car-badge badge-hot">🔥 Hot Deal</div>
+      </div>
+      <div class="car-info">
+        <div class="car-make">Volkswagen</div>
+        <div class="car-name">Polo Vivo 1.4 Trendline</div>
+        <div class="car-specs">
+          <span class="spec">2022</span>
+          <span class="spec-dot"></span>
+          <span class="spec">Manual</span>
+          <span class="spec-dot"></span>
+          <span class="spec">Petrol</span>
+          <span class="spec-dot"></span>
+          <span class="spec">38,000 km</span>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">R 179,500</div>
+          <a href="#contact" class="btn-view">Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Car 3 -->
+    <div class="car-card">
+      <div class="car-thumb" style="background:#0f1f10">
+        <svg viewBox="0 0 300 160" fill="none"><ellipse cx="150" cy="148" rx="120" ry="7" fill="rgba(212,43,43,0.2)"/><rect x="20" y="88" width="260" height="52" rx="8" fill="#1a2a1a"/><path d="M65 88 C85 62 118 52 150 51 C182 51 215 62 235 88Z" fill="#162016"/><ellipse cx="82" cy="136" rx="22" ry="22" fill="#111"/><ellipse cx="82" cy="136" rx="14" ry="14" fill="#1a1a1a"/><ellipse cx="218" cy="136" rx="22" ry="22" fill="#111"/><ellipse cx="218" cy="136" rx="14" ry="14" fill="#1a1a1a"/><rect x="20" y="106" width="260" height="4" fill="#D42B2B"/><rect x="20" y="120" width="34" height="14" rx="3" fill="#FFE066" opacity="0.85"/><rect x="246" y="120" width="34" height="14" rx="3" fill="#D42B2B" opacity="0.85"/></svg>
+        <div class="car-badge badge-used">Pre-owned</div>
+      </div>
+      <div class="car-info">
+        <div class="car-make">Toyota</div>
+        <div class="car-name">Fortuner 2.4 GD-6</div>
+        <div class="car-specs">
+          <span class="spec">2021</span>
+          <span class="spec-dot"></span>
+          <span class="spec">Auto</span>
+          <span class="spec-dot"></span>
+          <span class="spec">Diesel</span>
+          <span class="spec-dot"></span>
+          <span class="spec">62,000 km</span>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">R 648,000</div>
+          <a href="#contact" class="btn-view">Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Car 4 -->
+    <div class="car-card">
+      <div class="car-thumb" style="background:#1f1020">
+        <svg viewBox="0 0 300 160" fill="none"><ellipse cx="150" cy="148" rx="110" ry="7" fill="rgba(212,43,43,0.2)"/><rect x="35" y="90" width="230" height="50" rx="8" fill="#2a1535"/><path d="M85 90 C105 55 130 44 150 43 C170 43 195 55 215 90Z" fill="#221030"/><ellipse cx="92" cy="136" rx="19" ry="19" fill="#111"/><ellipse cx="92" cy="136" rx="12" ry="12" fill="#1a1a1a"/><ellipse cx="208" cy="136" rx="19" ry="19" fill="#111"/><ellipse cx="208" cy="136" rx="12" ry="12" fill="#1a1a1a"/><rect x="35" y="108" width="230" height="3" fill="#D42B2B"/><rect x="35" y="120" width="28" height="12" rx="3" fill="#FFE066" opacity="0.9"/><rect x="237" y="120" width="28" height="12" rx="3" fill="#D42B2B" opacity="0.9"/></svg>
+        <div class="car-badge badge-new">New</div>
+      </div>
+      <div class="car-info">
+        <div class="car-make">Hyundai</div>
+        <div class="car-name">Creta 1.5 Executive</div>
+        <div class="car-specs">
+          <span class="spec">2024</span>
+          <span class="spec-dot"></span>
+          <span class="spec">Auto</span>
+          <span class="spec-dot"></span>
+          <span class="spec">Petrol</span>
+          <span class="spec-dot"></span>
+          <span class="spec">0 km</span>
+        </div>
+        <div class="car-footer">
+          <div class="car-price"><small>From </small>R 389,900</div>
+          <a href="#contact" class="btn-view">Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Car 5 -->
+    <div class="car-card">
+      <div class="car-thumb" style="background:#1a120a">
+        <svg viewBox="0 0 300 160" fill="none"><ellipse cx="150" cy="148" rx="115" ry="7" fill="rgba(212,43,43,0.2)"/><rect x="25" y="95" width="250" height="46" rx="6" fill="#2a1a0a"/><path d="M60 95 C80 72 118 62 150 61 C182 61 220 72 240 95Z" fill="#221408"/><ellipse cx="80" cy="136" rx="22" ry="22" fill="#111"/><ellipse cx="80" cy="136" rx="14" ry="14" fill="#1a1a1a"/><ellipse cx="220" cy="136" rx="22" ry="22" fill="#111"/><ellipse cx="220" cy="136" rx="14" ry="14" fill="#1a1a1a"/><rect x="25" y="110" width="250" height="4" fill="#D42B2B"/><rect x="25" y="122" width="32" height="14" rx="3" fill="#FFE066" opacity="0.85"/><rect x="243" y="122" width="32" height="14" rx="3" fill="#D42B2B" opacity="0.85"/></svg>
+        <div class="car-badge badge-used">Pre-owned</div>
+      </div>
+      <div class="car-info">
+        <div class="car-make">Ford</div>
+        <div class="car-name">Ranger 2.0 Wildtrak</div>
+        <div class="car-specs">
+          <span class="spec">2020</span>
+          <span class="spec-dot"></span>
+          <span class="spec">Auto</span>
+          <span class="spec-dot"></span>
+          <span class="spec">Diesel</span>
+          <span class="spec-dot"></span>
+          <span class="spec">88,500 km</span>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">R 479,000</div>
+          <a href="#contact" class="btn-view">Enquire</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Car 6 -->
+    <div class="car-card">
+      <div class="car-thumb" style="background:#0a1520">
+        <svg viewBox="0 0 300 160" fill="none"><ellipse cx="150" cy="148" rx="110" ry="7" fill="rgba(212,43,43,0.2)"/><rect x="40" y="92" width="220" height="48" rx="8" fill="#0d2035"/><path d="M90 92 C108 62 132 52 150 51 C168 51 192 62 210 92Z" fill="#0a1a2e"/><ellipse cx="95" cy="136" rx="18" ry="18" fill="#111"/><ellipse cx="95" cy="136" rx="12" ry="12" fill="#1a1a1a"/><ellipse cx="205" cy="136" rx="18" ry="18" fill="#111"/><ellipse cx="205" cy="136" rx="12" ry="12" fill="#1a1a1a"/><rect x="40" y="110" width="220" height="3" fill="#D42B2B"/><rect x="40" y="122" width="26" height="12" rx="3" fill="#FFE066" opacity="0.9"/><rect x="234" y="122" width="26" height="12" rx="3" fill="#D42B2B" opacity="0.9"/></svg>
+        <div class="car-badge badge-hot">🔥 Hot Deal</div>
+      </div>
+      <div class="car-info">
+        <div class="car-make">BMW</div>
+        <div class="car-name">3 Series 320i Sport</div>
+        <div class="car-specs">
+          <span class="spec">2019</span>
+          <span class="spec-dot"></span>
+          <span class="spec">Auto</span>
+          <span class="spec-dot"></span>
+          <span class="spec">Petrol</span>
+          <span class="spec-dot"></span>
+          <span class="spec">74,000 km</span>
+        </div>
+        <div class="car-footer">
+          <div class="car-price">R 389,000</div>
+          <a href="#contact" class="btn-view">Enquire</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="why-grid">
+    <div>
+      <div class="s-label">Why Choose Us</div>
+      <h2 class="s-title">Trusted by Thousands Across GAUTENG</h2>
+      <p style="color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:2.5rem">We're not just selling cars — we're building relationships. Sifiso Dealership has been the go-to destination for quality vehicles and honest service since 2012.</p>
+      <div class="why-points">
+        <div class="why-point">
+          <div class="why-icon">🛡️</div>
+          <div>
+            <h3>Every Car Inspected</h3>
+            <p>All pre-owned vehicles undergo a rigorous 120-point mechanical inspection before going on the lot. What you see is what you get.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="why-icon">💳</div>
+          <div>
+            <h3>Easy Finance, Any Credit</h3>
+            <p>We work with all major banks and alternative financiers. Bad credit? No credit? We'll find a solution that works for you.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="why-icon">🔄</div>
+          <div>
+            <h3>Trade-In Welcome</h3>
+            <p>Get the best trade-in value for your current vehicle. We offer fair, transparent valuations with no hidden deductions.</p>
+          </div>
+        </div>
+        <div class="why-point">
+          <div class="why-icon">📋</div>
+          <div>
+            <h3>Full Warranty Available</h3>
+            <p>Extended warranty plans available on all vehicles. Drive with confidence, knowing you're covered.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-visual">
+      <div class="why-big-num">SD</div>
+      <div class="why-card">
+        <h3>Our Guarantee</h3>
+        <ul class="why-list">
+          <li>No hidden fees or surprise charges</li>
+          <li>Transparent pricing on every vehicle</li>
+          <li>Free test drive before you commit</li>
+          <li>Full service history provided</li>
+          <li>AA roadworthy certificate included</li>
+          <li>Same-day finance approval in most cases</li>
+          <li>After-sale support and assistance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCE BAND -->
+<div class="finance-band" id="finance">
+  <div>
+    <h2>Drive Now,<br>Pay Your Way</h2>
+    <p>With our flexible finance options, your dream car is more affordable than you think. Deposits from as little as from R10 000 — instant pre-approval in minutes.</p>
+  </div>
+  <a href="#contact" class="btn-white">Get Pre-Approved →</a>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="s-label">Customer Reviews</div>
+  <h2 class="s-title">What Our Clients Say</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"Bought my first car at Sifiso Dealership and the experience was incredible. No pressure, honest advice, and they got me financed when two other dealerships turned me away."</p>
+      <div class="testi-author">
+        <div class="avatar">TM</div>
+        <div><strong>Thabo Mkhize</strong><span>Durban North</span></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"I've bought three cars from Sifiso over the years and I keep coming back. The trade-in value was fair and the whole process took less than a day. Highly recommended!"</p>
+      <div class="testi-author">
+        <div class="avatar">NZ</div>
+        <div><strong>Nomsa Zulu</strong><span>Pinetown</span></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p>"Best dealership in GAUTENG without a doubt. Great selection, competitive prices, and the staff genuinely care about finding you the right car — not just any car."</p>
+      <div class="testi-author">
+        <div class="avatar">RS</div>
+        <div><strong>Rajan Singh</strong><span>Phoenix, Durban</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="s-label">Get in Touch</div>
+  <h2 class="s-title">Find Your Next Car Today</h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item">
+        <h4>📍 Location</h4>
+        <p>1950 Mangroove Road, Protea Glen<br>Soweto, Johannesburg, 1818</p>
+      </div>
+      <div class="contact-item">
+        <h4>📞 Call Us</h4>
+        <p>011 529 4301<br>065 944 0998 (WhatsApp)</p>
+      </div>
+      <div class="contact-item">
+        <h4>⏰ Trading Hours</h4>
+        <p>Mon – Fri: 08:00 – 17:30<br>Saturday: 08:00 – 14:00<br>Sunday: Closed</p>
+      </div>
+      <div class="contact-item">
+        <h4>✉️ Email</h4>
+        <p>sifisokunene26@gmail.co.za</p>
+      </div>
+    </div>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-field">
+          <label>First Name</label>
+          <input type="text" placeholder="Sifiso"/>
+        </div>
+        <div class="form-field">
+          <label>Last Name</label>
+          <input type="text" placeholder="Dlamini"/>
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Phone / WhatsApp</label>
+        <input type="tel" placeholder="072 000 0000"/>
+      </div>
+      <div class="form-field">
+        <label>I'm interested in</label>
+        <select>
+          <option>Buying a car</option>
+          <option>Booking a test drive</option>
+          <option>Trade-in valuation</option>
+          <option>Finance enquiry</option>
+          <option>General enquiry</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label>Message</label>
+        <textarea placeholder="Tell us what you're looking for — make, model, budget, any questions…"></textarea>
+      </div>
+      <button class="btn-red" style="border:none;cursor:pointer;width:100%;font-size:17px;padding:16px">Send Enquiry →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="logo-mark">S</div>
+        <span style="font-family:var(--display);font-size:1.3rem;font-weight:900;color:var(--white)">SIFISO DEALERSHIP</span>
+      </div>
+      <p>Your trusted car dealership in Soweto. Quality vehicles, honest prices, and service you can count on.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Vehicles</h4>
+      <ul>
+        <li><a href="#">New Cars</a></li>
+        <li><a href="#">Pre-Owned</a></li>
+        <li><a href="#">Bakkies & SUVs</a></li>
+        <li><a href="#">Special Deals</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Finance</a></li>
+        <li><a href="#">Trade-In</a></li>
+        <li><a href="#">Test Drive</a></li>
+        <li><a href="#">Insurance</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Directions</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Sifiso Dealership. All rights reserved. Reg. No. 2025/123456/07</span>
+    <div class="socials">
+      <a href="#" class="social-btn">f</a>
+      <a href="#" class="social-btn">in</a>
+      <a href="#" class="social-btn">▶</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Filter tab interaction
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
